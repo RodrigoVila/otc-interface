@@ -1,7 +1,7 @@
 import { Container, Box } from "@mui/material";
 import { Outlet } from "react-router-dom";
-import { Footer } from "@/components/Footer";
-import { Navbar } from "@/components/Navbar";
+import { Footer } from "./Footer";
+import { Navbar } from "./Navbar";
 
 export const Layout = () => {
   return (

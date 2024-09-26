@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
-import { Layout } from "@/components/Layout";
-import { AddOrderSection } from "@/features/orders/pages/AddOrderSection";
+import { Layout } from "@/ui/components/Layout";
+import { AddOrder } from "@/ui/orders/pages/AddOrder";
 
 export const router = createBrowserRouter([
   {
@@ -24,7 +24,7 @@ export const router = createBrowserRouter([
           },
           {
             path: "add",
-            element: <AddOrderSection />,
+            element: <AddOrder />,
           },
         ],
       },
