@@ -1,6 +1,5 @@
 import { Box } from "@mui/material";
-import { ListOrdersButton } from "./ListOrdersButton";
-import { AddOrderButton } from "@/ui/components/AddOrderButton";
+import { AddOrderButton, ListOrdersButton } from "@/ui/components/buttons";
 
 export const NavButtons = () => {
   return (
@@ -10,7 +9,6 @@ export const NavButtons = () => {
           xs: "none",
           md: "flex",
         },
-        gap: 2,
       }}
     >
       <ListOrdersButton />
