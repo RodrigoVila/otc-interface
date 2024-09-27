@@ -1,5 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import { Layout } from "@/ui/components/Layout";
+import { HomePage } from "@/ui/home/pages/HomePage";
 import { AddOrder } from "@/ui/orders/pages/AddOrder";
 
 export const router = createBrowserRouter([
@@ -9,7 +10,7 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "",
-        element: <>Home</>,
+        element: <HomePage />,
       },
       {
         path: "/orders",
