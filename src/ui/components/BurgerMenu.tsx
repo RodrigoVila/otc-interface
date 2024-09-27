@@ -1,8 +1,7 @@
 import { Menu as MenuIcon } from "@mui/icons-material";
 import { Box, IconButton, Menu, MenuItem } from "@mui/material";
 import { MouseEvent, useState } from "react";
-import { AddOrderButton } from "./AddOrderButton";
-import { ListOrdersButton } from "./ListOrdersButton";
+import { AddOrderButton, ListOrdersButton } from "@/ui/components/buttons";
 
 export const BurgerMenu = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -15,7 +14,7 @@ export const BurgerMenu = () => {
   const handleMenuClose = () => setAnchorEl(null);
 
   return (
-    <Box>
+    <Box sx={{ display: { xs: "flex", md: "none" } }}>
       <IconButton
         size="large"
         edge="start"
@@ -29,7 +28,7 @@ export const BurgerMenu = () => {
 
       <Menu anchorEl={anchorEl} open={open} onClose={handleMenuClose}>
         <MenuItem onClick={handleMenuClose} sx={{ padding: 1 }}>
-          <AddOrderButton sx={{ paddingX: 3 }} />
+          <AddOrderButton />
         </MenuItem>
         <MenuItem
           onClick={handleMenuClose}

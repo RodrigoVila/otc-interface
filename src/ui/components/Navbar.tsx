@@ -1,15 +1,30 @@
 import { AppBar, Box, Toolbar, Typography } from "@mui/material";
-import { Link } from "react-router-dom";
-import { BurgerMenu } from "./BurgerMenu";
-import { NavButtons } from "./NavButtons";
+import { useMemo } from "react";
+import { useLocation } from "react-router-dom";
+import { Logo } from "./Logo";
+import { BurgerMenu } from "@/ui/components/BurgerMenu";
+import { NavButtons } from "@/ui/components/buttons/NavButtons";
 
 export const Navbar = () => {
+  const { pathname } = useLocation();
+
+  const isHomePage = pathname === "/";
+
+  const title = useMemo(() => {
+    const TITLES: { [key: string]: string } = {
+      "/orders/new": "New Order",
+      "/orders": "Orders",
+    };
+    return TITLES[pathname] || "";
+  }, [pathname]);
+
   return (
     <AppBar
       position="static"
       sx={{
         bgcolor: "transparent",
         boxShadow: "none",
+        zIndex: 1,
       }}
     >
       <Toolbar
@@ -18,40 +33,27 @@ export const Navbar = () => {
           flexDirection: "row",
           alignItems: "center",
           justifyContent: "space-between",
-          gap: 1,
         }}
       >
-        <Box>
-          <img
-            src="https://membranelabs.com/wp-content/uploads/2023/06/Membrane-icon-9-Jun-2023.svg"
-            alt="Membrane Labs logo"
-            style={{ height: 15 }}
-          />
-          <Typography
-            variant="h6"
-            component={Link}
-            to="/"
-            sx={{
-              display: {
-                xs: "none",
-                md: "flex",
-              },
-              flexGrow: 1,
-              color: "white",
-              textDecoration: "none",
-              fontSize: {
-                xs: "0.9rem",
-                md: "1rem",
-              },
-              fontWeight: "bold",
-            }}
-          >
-            Membrane OTC
-          </Typography>
-        </Box>
-        <Typography>Add Order</Typography>
+        <Logo isHomePage={isHomePage} />
 
-        <Box>
+        <Typography
+          sx={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            fontWeight: "bold",
+          }}
+        >
+          {title}
+        </Typography>
+
+        <Box
+          sx={{
+            display: isHomePage ? "none" : "flex",
+          }}
+        >
           {/* BurgerMenu will be shown on mobile devices and hidden on tablets and larger */}
           <BurgerMenu />
           {/* NavButtons will be hidden on mobile devices and shown on tablets and larger */}
