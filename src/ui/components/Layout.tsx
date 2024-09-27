@@ -5,10 +5,25 @@ import { Navbar } from "./Navbar";
 
 export const Layout = () => {
   return (
-    <Box sx={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        minHeight: "100vh",
+      }}
+    >
       <Navbar />
 
-      <Container maxWidth="lg" sx={{ flexGrow: 1, marginTop: "2rem" }}>
+      <Container
+        maxWidth="lg"
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          flexGrow: 1,
+        }}
+      >
         <Outlet />
       </Container>
 

@@ -5,10 +5,8 @@ export const Footer = () => {
     <Box
       component="footer"
       sx={{
-        bgcolor: "primary.main",
+        bgcolor: "transparent",
         padding: "1rem",
-        marginTop: "auto",
-        color: "white",
       }}
     >
       <Typography variant="body2" align="center">
