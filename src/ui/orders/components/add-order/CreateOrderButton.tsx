@@ -1,12 +1,15 @@
 import { Button } from "@mui/material";
+import { ReactNode } from "react";
 import { useFormContext } from "react-hook-form";
 import { COLORS } from "@/ui/constants/colors";
 
 type CreateOrderButtonProps = {
+  children?: ReactNode;
   disabled?: boolean;
 };
 
 export const CreateOrderButton = ({
+  children,
   disabled = false,
 }: CreateOrderButtonProps) => {
   const { watch } = useFormContext();
@@ -34,7 +37,7 @@ export const CreateOrderButton = ({
         width: "100%",
       }}
     >
-      {`Create ${direction === "buy" ? "buying" : "selling"} order`}
+      {children ?? `Create ${direction === "buy" ? "buying" : "selling"} order`}
     </Button>
   );
 };

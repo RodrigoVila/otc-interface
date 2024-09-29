@@ -1,6 +1,6 @@
 import { Box, Typography } from "@mui/material";
 import { FormProvider, useForm } from "react-hook-form";
-import { CreateOrderButton } from "./CreateOrderButton";
+import { CreateOrderButton } from "./add-order/CreateOrderButton";
 import { CurrencyType, OrderType } from "@/core/orders/orderTypes";
 import { usePersistedOrderStore } from "@/core/orders/usePersistedOrderStore";
 import { CustomTooltip } from "@/ui/components/CustomTooltip";
@@ -12,6 +12,12 @@ import {
   QuantityInput,
   TotalPrice,
 } from "@/ui/orders/components/add-order";
+
+type OrderFormType = {
+  existingOrder?: OrderType | null;
+  openSnackbar: (message: string) => void;
+  closeEditModal?: () => void;
+};
 
 const currencies: CurrencyType[] = [
   {
@@ -45,6 +51,7 @@ const currencies: CurrencyType[] = [
     image: "/avalanche.png",
   },
 ];
+
 const defaultValues: OrderType = {
   id: "",
   direction: "buy",
@@ -55,14 +62,14 @@ const defaultValues: OrderType = {
 };
 
 export const OrderForm = ({
+  existingOrder,
   openSnackbar,
-}: {
-  openSnackbar: (message: string) => void;
-}) => {
-  const { addOrder } = usePersistedOrderStore();
+  closeEditModal,
+}: OrderFormType) => {
+  const { addOrder, editOrder } = usePersistedOrderStore();
 
   const methods = useForm<OrderType>({
-    defaultValues,
+    defaultValues: existingOrder || defaultValues,
     mode: "onChange",
     reValidateMode: "onChange",
   });
@@ -70,10 +77,15 @@ export const OrderForm = ({
   const { handleSubmit, formState, reset: clearInputs } = methods;
 
   const onSubmit = (data: OrderType) => {
-    const order = { ...data, id: crypto.randomUUID() };
-
-    addOrder(order);
-    openSnackbar("Order created");
+    if (existingOrder) {
+      editOrder(existingOrder.id, { ...data, id: existingOrder.id });
+      openSnackbar("Order updated");
+      closeEditModal();
+    } else {
+      const order = { ...data, id: crypto.randomUUID() };
+      addOrder(order);
+      openSnackbar("Order created");
+    }
     clearInputs();
   };
 
@@ -89,7 +101,7 @@ export const OrderForm = ({
         }}
       >
         <Typography sx={{ textAlign: "center", fontSize: "2.5rem" }}>
-          New Order
+          {existingOrder ? "Edit Order" : "New Order"}
         </Typography>
         <Box
           component="form"
@@ -125,7 +137,9 @@ export const OrderForm = ({
           </Box>
 
           {formState.isValid ? (
-            <CreateOrderButton />
+            <CreateOrderButton>
+              {existingOrder ? "Update Order" : undefined}
+            </CreateOrderButton>
           ) : (
             <CustomTooltip title="Please complete every input before submitting">
               <CreateOrderButton disabled />

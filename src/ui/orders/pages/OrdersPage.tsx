@@ -2,8 +2,8 @@ import { CheckCircle } from "@mui/icons-material";
 import { Alert, Box, Snackbar } from "@mui/material";
 import { common, green } from "@mui/material/colors";
 import { useState } from "react";
-import { OrderForm } from "@/ui/orders/components/add-order";
-import { OrderList } from "@/ui/orders/components/list-orders/";
+import { OrderList } from "@/ui/orders/components/list-orders";
+import { OrderForm } from "@/ui/orders/components/OrderForm";
 
 export const OrdersPage = () => {
   const [snackbarMessage, setSnackbarMessage] = useState("");
@@ -34,7 +34,7 @@ export const OrdersPage = () => {
         }}
       >
         <OrderForm openSnackbar={handlSnackbarOpen} />
-        <OrderList />
+        <OrderList openSnackbar={handlSnackbarOpen} />
       </Box>
 
       {/* Notifications */}
