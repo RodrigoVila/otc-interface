@@ -4,12 +4,21 @@ import { blue, red } from "@mui/material/colors";
 import { useState } from "react";
 import { COLORS } from "@/ui/constants/colors";
 
-export const ActionsMenu = () => {
+type ActionsMenuProps = {
+  onEditClick: () => void;
+};
+
+export const ActionsMenu = ({ onEditClick }: ActionsMenuProps) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
+  };
+
+  const handleEditClick = () => {
+    onEditClick();
+    handleClose();
   };
 
   const handleClose = () => {
@@ -36,7 +45,7 @@ export const ActionsMenu = () => {
         slotProps={{ paper: { elevation: 1 } }}
       >
         <MenuItem
-          onClick={handleClose}
+          onClick={handleEditClick}
           sx={{
             paddingY: 1.5,
             "&:hover": {

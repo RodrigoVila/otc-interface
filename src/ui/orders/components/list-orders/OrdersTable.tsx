@@ -16,11 +16,19 @@ import { OrderType } from "@/core/orders/orderTypes";
 import { COLORS } from "@/ui/constants/colors";
 import { formatUSDPrice } from "@/ui/utils/formatPrice";
 
+type OrdersCardsProps = {
+  orders: OrderType[];
+  handleEditModalOpen: (order: OrderType) => void;
+};
+
 const cellStyle: SxProps<Theme> = {
   fontSize: "1rem",
   fontWeight: "700",
 };
-export const OrdersTable = ({ orders }: { orders: OrderType[] }) => {
+export const OrdersTable = ({
+  orders,
+  handleEditModalOpen,
+}: OrdersCardsProps) => {
   return (
     <TableContainer
       component={Paper}
@@ -39,35 +47,33 @@ export const OrdersTable = ({ orders }: { orders: OrderType[] }) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {orders.map(
-            ({ id, direction, currency, quantity, total, expirationDate }) => (
-              <TableRow
-                key={id}
-                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-              >
-                <TableCell>
-                  <Chip
-                    label={direction.toUpperCase()}
-                    sx={{
-                      bgcolor: direction === "buy" ? blue[500] : green[500],
-                      height: 0,
-                      padding: 1.5,
-                      "& .MuiChip-label": {
-                        padding: 0,
-                      },
-                    }}
-                  />
-                </TableCell>
-                <TableCell>{currency.symbol}</TableCell>
-                <TableCell>{quantity}</TableCell>
-                <TableCell>{formatUSDPrice(total)}</TableCell>
-                <TableCell>{expirationDate}</TableCell>
-                <TableCell sx={{ display: "flex", gap: 1 }}>
-                  <ActionsMenu />
-                </TableCell>
-              </TableRow>
-            )
-          )}
+          {orders.map((order) => (
+            <TableRow
+              key={order.id}
+              sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+            >
+              <TableCell>
+                <Chip
+                  label={order.direction.toUpperCase()}
+                  sx={{
+                    bgcolor: order.direction === "buy" ? blue[500] : green[500],
+                    height: 0,
+                    padding: 1.5,
+                    "& .MuiChip-label": {
+                      padding: 0,
+                    },
+                  }}
+                />
+              </TableCell>
+              <TableCell>{order.currency.symbol}</TableCell>
+              <TableCell>{order.quantity}</TableCell>
+              <TableCell>{formatUSDPrice(order.total)}</TableCell>
+              <TableCell>{order.expirationDate}</TableCell>
+              <TableCell sx={{ display: "flex", gap: 1 }}>
+                <ActionsMenu onEditClick={() => handleEditModalOpen(order)} />
+              </TableCell>
+            </TableRow>
+          ))}
         </TableBody>
       </Table>
     </TableContainer>
