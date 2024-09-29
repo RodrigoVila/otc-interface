@@ -10,7 +10,7 @@ export const Footer = () => {
       }}
     >
       <Typography variant="body2" align="center">
-        © 2024 Membrane Frontend CC. All rights reserved.
+        © 2024. All rights reserved.
       </Typography>
     </Box>
   );

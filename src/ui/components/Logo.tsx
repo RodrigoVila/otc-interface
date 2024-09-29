@@ -9,7 +9,7 @@ export const Logo = ({ isHomePage }: { isHomePage: boolean }) => {
       sx={{
         display: "flex",
         alignItems: "center",
-        gap: 1,
+        gap: 2,
         textDecoration: "none",
         "&:focus, &:active": {
           outline: "none",
@@ -28,10 +28,7 @@ export const Logo = ({ isHomePage }: { isHomePage: boolean }) => {
       <Typography
         variant="h6"
         sx={{
-          display: {
-            xs: "none",
-            md: isHomePage ? "none" : "flex",
-          },
+          display: isHomePage ? "none" : "flex",
           flexGrow: 1,
           color: "white",
           fontSize: {

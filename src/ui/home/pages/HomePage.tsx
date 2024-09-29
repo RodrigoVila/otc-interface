@@ -60,7 +60,6 @@ export const HomePage = () => {
               sm: "1.5rem",
               md: "2rem",
             },
-            color: COLORS.secondary,
             zIndex: 1,
           }}
         >
