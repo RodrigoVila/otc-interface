@@ -1,8 +1,9 @@
-import { Box, Fade, Tooltip } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { FormProvider, useForm } from "react-hook-form";
 import { CreateOrderButton } from "./CreateOrderButton";
 import { CurrencyType, OrderType } from "@/core/orders/orderTypes";
 import { usePersistedOrderStore } from "@/core/orders/usePersistedOrderStore";
+import { CustomTooltip } from "@/ui/components/CustomTooltip";
 import { COLORS } from "@/ui/constants/colors";
 import {
   CurrenciesDropdown,
@@ -79,61 +80,58 @@ export const OrderForm = ({
   return (
     <FormProvider {...methods}>
       <Box
-        component="form"
-        onSubmit={handleSubmit(onSubmit)}
         sx={{
           display: "flex",
           flexDirection: "column",
-          borderRadius: "10px",
-          overflow: "hidden",
+          alignItems: "center",
+          gap: 2,
           width: "100%",
-          maxWidth: "550px",
         }}
       >
-        <DirectionToggleHeader />
-
+        <Typography sx={{ textAlign: "center", fontSize: "2.5rem" }}>
+          New Order
+        </Typography>
         <Box
+          component="form"
+          onSubmit={handleSubmit(onSubmit)}
           sx={{
             display: "flex",
             flexDirection: "column",
-            gap: 4,
-            paddingY: 4,
-            paddingX: 3,
-            bgcolor: COLORS.background2,
-            minWidth: "320px",
+            borderRadius: "10px",
+            overflow: "hidden",
             width: "100%",
-            boxShadow: "0px 4px 20px rgba(0, 0, 0, 0.1)",
+            maxWidth: "550px",
           }}
         >
-          <CurrenciesDropdown currencies={currencies} />
-          <QuantityInput />
-          <ExpirationDateInput />
-          <TotalPrice />
-        </Box>
+          <DirectionToggleHeader />
 
-        {formState.isValid ? (
-          <CreateOrderButton />
-        ) : (
-          <Tooltip
-            title="Please complete every input before submitting"
-            TransitionComponent={Fade}
-            TransitionProps={{ timeout: 600 }}
-            followCursor
-            PopperProps={{
-              sx: {
-                "& .MuiTooltip-tooltip": {
-                  fontSize: "1rem",
-                  padding: "10px",
-                  textAlign: "center",
-                },
-              },
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              gap: 4,
+              paddingY: 4,
+              paddingX: 3,
+              bgcolor: COLORS.background2,
+              minWidth: "320px",
+              width: "100%",
+              boxShadow: "0px 4px 20px rgba(0, 0, 0, 0.1)",
             }}
           >
-            <span>
+            <CurrenciesDropdown currencies={currencies} />
+            <QuantityInput />
+            <ExpirationDateInput />
+            <TotalPrice />
+          </Box>
+
+          {formState.isValid ? (
+            <CreateOrderButton />
+          ) : (
+            <CustomTooltip title="Please complete every input before submitting">
               <CreateOrderButton disabled />
-            </span>
-          </Tooltip>
-        )}
+            </CustomTooltip>
+          )}
+        </Box>
       </Box>
     </FormProvider>
   );

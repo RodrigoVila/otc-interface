@@ -5,7 +5,6 @@ import {
   InputLabel,
   MenuItem,
   Select,
-  Typography,
 } from "@mui/material";
 import { grey } from "@mui/material/colors";
 import { SelectChangeEvent } from "@mui/material/Select/SelectInput";
@@ -13,6 +12,7 @@ import { Controller, useFormContext } from "react-hook-form";
 import { USDConversion } from "./USDConversion";
 import { CurrencyType } from "@/core/orders/orderTypes";
 import { COLORS } from "@/ui/constants/colors";
+import { CurrencyWithIcon } from "@/ui/orders/components/CurrencyWithIcon";
 
 const focusTextStyle = COLORS.focus.text;
 const focusBgStyle = COLORS.focus.background;
@@ -97,23 +97,8 @@ export const CurrenciesDropdown = ({
                       width: "100%",
                     }}
                   >
-                    <Box
-                      sx={{
-                        display: "flex",
-                        alignItems: "center",
-                        gap: 1,
-                        marginRight: 2,
-                      }}
-                    >
-                      <img
-                        src={image}
-                        alt={name}
-                        style={{ width: 30, height: 30, marginRight: 5 }}
-                      />
-                      <Typography variant="body1" component="p">
-                        {name}
-                      </Typography>
-                    </Box>
+                    <CurrencyWithIcon name={name} image={image} />
+
                     <Chip
                       label={symbol}
                       variant="filled"
