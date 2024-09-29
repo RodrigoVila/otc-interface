@@ -1,5 +1,3 @@
-import { Control, FieldValues } from "react-hook-form";
-
 export type CurrencyType = {
   id: string;
   name: string;
@@ -8,7 +6,7 @@ export type CurrencyType = {
   currentPrice?: number;
 };
 
-export type Order = {
+export type OrderType = {
   id: string;
   direction: "buy" | "sell";
   currency: CurrencyType;
@@ -18,12 +16,8 @@ export type Order = {
 };
 
 export type OrderState = {
-  orders: Order[];
-  addOrder: (order: Order) => void;
-  editOrder: (id: string, updatedOrder: Order) => void;
+  orders: OrderType[];
+  addOrder: (order: OrderType) => void;
+  editOrder: (id: string, updatedOrder: OrderType) => void;
   deleteOrder: (id: string) => void;
-};
-
-export type PropsWithFormControl = {
-  control: Control<FieldValues, string>;
 };

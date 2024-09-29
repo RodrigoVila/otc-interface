@@ -1,18 +1,21 @@
-import { Box } from "@mui/material";
+import { Box, Button } from "@mui/material";
 import { common } from "@mui/material/colors";
-import { AddOrderButton } from "./AddOrderButton";
+import { useNavigate } from "react-router-dom";
 
-export const HomeAddOrderButton = () => {
+export const AddOrderButton = () => {
+  const navigate = useNavigate();
   return (
     <Box
       component="div"
+      onClick={() => navigate("/orders")}
       sx={{
         position: "relative",
         background: "linear-gradient(45deg, #8A2BE2, #9932CC, #BA55D3)",
         padding: "2px",
+        marginTop: 1,
       }}
     >
-      <AddOrderButton
+      <Button
         sx={{
           bgcolor: common.black,
           color: common.white,
@@ -33,7 +36,7 @@ export const HomeAddOrderButton = () => {
         }}
       >
         Create Your First Order
-      </AddOrderButton>
+      </Button>
     </Box>
   );
 };

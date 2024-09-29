@@ -1,7 +1,6 @@
 import { Box, Typography } from "@mui/material";
-import { HomeAddOrderButton } from "@/ui/components/buttons";
 import { COLORS } from "@/ui/constants/colors";
-import { DarkOverlay } from "@/ui/home/components/DarkOverlay";
+import { AddOrderButton, DarkOverlay } from "@/ui/home/components";
 
 export const HomePage = () => {
   return (
@@ -66,7 +65,7 @@ export const HomePage = () => {
           A decentralized hub for secure Over-The-Counter trading
         </Typography>
 
-        <HomeAddOrderButton sx={{ mt: 1 }} />
+        <AddOrderButton />
       </Box>
     </Box>
   );
