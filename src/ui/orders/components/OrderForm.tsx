@@ -1,10 +1,11 @@
 import { Box, Typography } from "@mui/material";
 import { FormProvider, useForm } from "react-hook-form";
 import { CreateOrderButton } from "./add-order/CreateOrderButton";
-import { CurrencyType, OrderType } from "@/core/orders/orderTypes";
+import { OrderType } from "@/core/orders/orderTypes";
 import { usePersistedOrderStore } from "@/core/orders/usePersistedOrderStore";
 import { CustomTooltip } from "@/ui/components/CustomTooltip";
 import { COLORS } from "@/ui/constants/colors";
+import { defaultValues } from "@/ui/constants/orders";
 import {
   CurrenciesDropdown,
   DirectionToggleHeader,
@@ -17,48 +18,6 @@ type OrderFormType = {
   existingOrder?: OrderType | null;
   openSnackbar: (message: string) => void;
   closeEditModal?: () => void;
-};
-
-const currencies: CurrencyType[] = [
-  {
-    id: "bitcoin",
-    name: "Bitcoin",
-    symbol: "BTC",
-    image: "/bitcoin.png",
-  },
-  {
-    id: "ethereum",
-    name: "Ethereum",
-    symbol: "ETH",
-    image: "/ethereum.png",
-  },
-  {
-    id: "solana",
-    name: "Solana",
-    symbol: "SOL",
-    image: "/solana.png",
-  },
-  {
-    id: "binancecoin",
-    name: "Binance Coin",
-    symbol: "BNB",
-    image: "/binance.png",
-  },
-  {
-    id: "avalanche-2",
-    name: "Avalanche",
-    symbol: "AVAX",
-    image: "/avalanche.png",
-  },
-];
-
-const defaultValues: OrderType = {
-  id: "",
-  direction: "buy",
-  currency: currencies[0],
-  quantity: 0,
-  expirationDate: "",
-  total: 0,
 };
 
 export const OrderForm = ({
@@ -142,7 +101,7 @@ export const OrderForm = ({
               boxShadow: "0px 4px 20px rgba(0, 0, 0, 0.1)",
             }}
           >
-            <CurrenciesDropdown currencies={currencies} />
+            <CurrenciesDropdown />
             <QuantityInput />
             <ExpirationDateInput />
             <TotalPrice />

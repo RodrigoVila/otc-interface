@@ -10,18 +10,14 @@ import { grey } from "@mui/material/colors";
 import { SelectChangeEvent } from "@mui/material/Select/SelectInput";
 import { Controller, useFormContext } from "react-hook-form";
 import { USDConversion } from "./USDConversion";
-import { CurrencyType } from "@/core/orders/orderTypes";
 import { COLORS } from "@/ui/constants/colors";
+import { currencies } from "@/ui/constants/orders";
 import { CurrencyWithIcon } from "@/ui/orders/components/CurrencyWithIcon";
 
 const focusTextStyle = COLORS.focus.text;
 const focusBgStyle = COLORS.focus.background;
 
-export const CurrenciesDropdown = ({
-  currencies,
-}: {
-  currencies: CurrencyType[];
-}) => {
+export const CurrenciesDropdown = () => {
   const { control, watch, setValue } = useFormContext();
 
   const selectedCurrency = watch("currency");
