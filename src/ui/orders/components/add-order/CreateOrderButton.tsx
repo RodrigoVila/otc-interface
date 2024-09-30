@@ -3,7 +3,7 @@ import { ReactNode } from "react";
 import { useFormContext } from "react-hook-form";
 import { COLORS } from "@/ui/constants/colors";
 
-type CreateOrderButtonProps = {
+export type CreateOrderButtonProps = {
   children?: ReactNode;
   disabled?: boolean;
 };

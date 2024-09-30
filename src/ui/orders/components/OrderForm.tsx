@@ -1,6 +1,5 @@
 import { Box, Typography } from "@mui/material";
 import { FormProvider, useForm } from "react-hook-form";
-import { CreateOrderButton } from "./add-order/CreateOrderButton";
 import { OrderType } from "@/core/orders/orderTypes";
 import { usePersistedOrderStore } from "@/core/orders/usePersistedOrderStore";
 import { CustomTooltip } from "@/ui/components/CustomTooltip";
@@ -12,6 +11,7 @@ import {
   ExpirationDateInput,
   QuantityInput,
   TotalPrice,
+  CreateOrderButton,
 } from "@/ui/orders/components/add-order";
 
 type OrderFormType = {

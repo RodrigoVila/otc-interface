@@ -9,9 +9,9 @@ import {
 import { grey } from "@mui/material/colors";
 import { SelectChangeEvent } from "@mui/material/Select/SelectInput";
 import { Controller, useFormContext } from "react-hook-form";
-import { USDConversion } from "./USDConversion";
 import { COLORS } from "@/ui/constants/colors";
 import { currencies } from "@/ui/constants/orders";
+import { USDConversion } from "@/ui/orders/components/add-order/USDConversion";
 import { CurrencyWithIcon } from "@/ui/orders/components/CurrencyWithIcon";
 
 const focusTextStyle = COLORS.focus.text;
