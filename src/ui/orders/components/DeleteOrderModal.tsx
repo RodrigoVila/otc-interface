@@ -1,5 +1,5 @@
 import { Box, Button, Modal, Typography, SxProps, Theme } from "@mui/material";
-import { red } from "@mui/material/colors";
+import { common, grey, red } from "@mui/material/colors";
 import { CloseModalButton } from "./CloseModalButton";
 import { OrderCard } from "./OrderCard";
 import { OrderType } from "@/core/orders/orderTypes";
@@ -96,6 +96,8 @@ export const DeleteOrderModal = ({
             sx={{
               ...buttonStyles,
               bgcolor: red[600],
+              borderTop: 1,
+              borderTopColor: red[600],
               "&:hover": {
                 bgcolor: red[900],
               },
@@ -108,11 +110,10 @@ export const DeleteOrderModal = ({
             sx={{
               ...buttonStyles,
               borderTop: 1,
-              borderTopColor: COLORS.primary,
-              color: COLORS.primary,
+              borderTopColor: common.white,
+              color: common.white,
               "&:hover": {
-                backgroundColor: COLORS.primary,
-                color: COLORS.background,
+                backgroundColor: grey[400],
               },
             }}
           >
