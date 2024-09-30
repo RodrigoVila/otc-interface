@@ -1,6 +1,19 @@
+import { keyframes } from "@emotion/react";
 import { Box } from "@mui/material";
 
-export const DarkOverlay = () => {
+const blurAnimation = keyframes`
+  0% {
+    backdrop-filter: blur(2px);
+  }
+  50% {
+    backdrop-filter: blur(10px);
+  }
+  100% {
+    backdrop-filter: blur(2px);
+  }
+`;
+
+export const AnimatedOverlay = () => {
   return (
     <Box
       sx={{
@@ -12,6 +25,7 @@ export const DarkOverlay = () => {
         backdropFilter: "blur(5px)",
         backgroundColor: "rgba(0, 0, 0, 0.2)",
         borderRadius: "10px",
+        animation: `${blurAnimation} 6s ease-in-out infinite`,
       }}
     />
   );

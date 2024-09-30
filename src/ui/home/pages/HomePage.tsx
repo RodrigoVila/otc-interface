@@ -1,6 +1,6 @@
 import { Box, Typography } from "@mui/material";
 import { COLORS } from "@/ui/constants/colors";
-import { AddOrderButton, DarkOverlay } from "@/ui/home/components";
+import { AddOrderButton, AnimatedOverlay } from "@/ui/home/components";
 
 export const HomePage = () => {
   return (
@@ -25,7 +25,7 @@ export const HomePage = () => {
           backgroundRepeat: "no-repeat",
         }}
       />
-      <DarkOverlay />
+      <AnimatedOverlay />
       <Box
         sx={{
           display: "flex",
