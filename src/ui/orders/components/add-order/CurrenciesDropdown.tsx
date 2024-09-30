@@ -36,7 +36,7 @@ export const CurrenciesDropdown = () => {
         control={control}
         render={({ field }) => (
           <FormControl fullWidth variant="standard" sx={{ paddingTop: 1.5 }}>
-            <InputLabel id="crypto-select-label" sx={{ fontSize: "1.3rem" }}>
+            <InputLabel id="crypto-select-label" sx={{ fontSize: "1.4rem" }}>
               Select Cryptocurrency
             </InputLabel>
 

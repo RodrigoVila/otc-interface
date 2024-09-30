@@ -4,114 +4,118 @@ import { LocalizationProvider, MobileDatePicker } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import dayjs, { Dayjs } from "dayjs";
 import utc from "dayjs/plugin/utc";
+import { ForwardedRef, forwardRef } from "react";
 import { Controller, useFormContext } from "react-hook-form";
 import { COLORS } from "@/ui/constants/colors";
 
 dayjs.extend(utc);
 
-export const ExpirationDateInput = () => {
-  const { control } = useFormContext();
+export const ExpirationDateInput = forwardRef(
+  (_, ref: ForwardedRef<HTMLDivElement>) => {
+    const { control } = useFormContext();
 
-  const formatDate = (date: Dayjs) => dayjs(date).format("MM/DD/YYYY");
-  const formatUTC = (date: Dayjs) =>
-    dayjs(date).utc().format("MM/DD/YYYY HH:mm [UTC]");
+    const formatDate = (date: Dayjs) => dayjs(date).format("MM/DD/YYYY");
+    const formatUTC = (date: Dayjs) =>
+      dayjs(date).utc().format("MM/DD/YYYY HH:mm [UTC]");
 
-  return (
-    <Controller
-      name="expirationDate"
-      control={control}
-      rules={{
-        required: "Expiration date is required",
-        validate: (value) => {
-          const selectedDate = dayjs(value, "MM/DD/YYYY");
-          return (
-            selectedDate.isSame(dayjs(), "day") ||
-            selectedDate.isAfter(dayjs(), "day") ||
-            "Date must be in the future"
-          );
-        },
-      }}
-      render={({ field }) => (
-        <LocalizationProvider dateAdapter={AdapterDayjs}>
-          <MobileDatePicker
-            {...field}
-            value={field.value ? dayjs(field.value, "MM/DD/YYYY") : null}
-            label="Order Expiration Date"
-            disablePast
-            onAccept={(newValue: Dayjs | null) =>
-              newValue && field.onChange(formatDate(newValue))
-            }
-            onChange={() => {}}
-            slotProps={{
-              leftArrowIcon: { sx: { color: COLORS.primary } },
-              rightArrowIcon: { sx: { color: COLORS.primary } },
-              switchViewIcon: { sx: { color: COLORS.primary } },
-            }}
-            slots={{
-              textField: (params) => (
-                <Box
-                  sx={{
-                    display: "flex",
-                    flexDirection: "column",
-                    width: "100%",
-                  }}
-                >
-                  <TextField
-                    {...params}
-                    variant="standard"
-                    slotProps={{ inputLabel: { shrink: true } }}
-                    sx={{
-                      marginTop: 2,
-                      backgroundColor: COLORS.background,
-                      width: "100%",
-                      "& input": { color: COLORS.primary },
-                      "& svg": { color: COLORS.primary, marginRight: 2 },
-                      "& .MuiInputLabel-root": {
-                        fontSize: "1.1rem",
-                        transform: "translate(0px, -2rem)",
-                      },
-                      "& .MuiInputBase-root": {
-                        marginY: 0,
-                        paddingY: "0.8rem",
-                        paddingLeft: 1,
-                      },
-                      "& .MuiInputBase-input": {
-                        paddingY: 1,
-                        paddingLeft: "0.4rem",
-                        fontSize: "1.2rem",
-                      },
-                    }}
-                  />
+    return (
+      <Controller
+        name="expirationDate"
+        control={control}
+        rules={{
+          required: "Expiration date is required",
+          validate: (value) => {
+            const selectedDate = dayjs(value, "MM/DD/YYYY");
+            return (
+              selectedDate.isSame(dayjs(), "day") ||
+              selectedDate.isAfter(dayjs(), "day") ||
+              "Date must be in the future"
+            );
+          },
+        }}
+        render={({ field }) => (
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <MobileDatePicker
+              {...field}
+              ref={ref}
+              value={field.value ? dayjs(field.value, "MM/DD/YYYY") : null}
+              label="Order Expiration Date"
+              disablePast
+              onAccept={(newValue: Dayjs | null) =>
+                newValue && field.onChange(formatDate(newValue))
+              }
+              onChange={() => {}}
+              slotProps={{
+                leftArrowIcon: { sx: { color: COLORS.primary } },
+                rightArrowIcon: { sx: { color: COLORS.primary } },
+                switchViewIcon: { sx: { color: COLORS.primary } },
+              }}
+              slots={{
+                textField: (params) => (
                   <Box
                     sx={{
-                      fontSize: "0.9rem",
-                      bgcolor: COLORS.background2,
-                      paddingTop: 1,
+                      display: "flex",
+                      flexDirection: "column",
+                      width: "100%",
                     }}
                   >
-                    <Typography
+                    <TextField
+                      {...params}
+                      variant="standard"
+                      slotProps={{ inputLabel: { shrink: true } }}
                       sx={{
-                        fontSize: "inherit",
-                        fontWeight: "700",
-                        color: common.white,
-                        letterSpacing: "0.8px",
-                        mb: 1,
+                        marginTop: 2,
+                        backgroundColor: COLORS.background,
+                        width: "100%",
+                        "& input": { color: COLORS.primary },
+                        "& svg": { color: COLORS.primary, marginRight: 2 },
+                        "& .MuiInputLabel-root": {
+                          fontSize: "1.1rem",
+                          transform: "translate(0px, -2rem)",
+                        },
+                        "& .MuiInputBase-root": {
+                          marginY: 0,
+                          paddingY: "0.8rem",
+                          paddingLeft: 1,
+                        },
+                        "& .MuiInputBase-input": {
+                          paddingY: 1,
+                          paddingLeft: "0.4rem",
+                          fontSize: "1.2rem",
+                        },
+                      }}
+                    />
+                    <Box
+                      sx={{
+                        fontSize: "0.9rem",
+                        bgcolor: COLORS.background2,
+                        paddingTop: 1,
                       }}
                     >
-                      Note: Expiration dates will be handled in UTC time
-                    </Typography>
-                    {field.value && (
-                      <Typography fontSize="inherit">{`Order UTC Time: ${formatUTC(
-                        dayjs(field.value)
-                      )}`}</Typography>
-                    )}
+                      <Typography
+                        sx={{
+                          fontSize: "inherit",
+                          fontWeight: "700",
+                          color: common.white,
+                          letterSpacing: "0.8px",
+                          mb: 1,
+                        }}
+                      >
+                        Note: Expiration dates will be handled in UTC time
+                      </Typography>
+                      {field.value && (
+                        <Typography fontSize="inherit">{`Order UTC Time: ${formatUTC(
+                          dayjs(field.value)
+                        )}`}</Typography>
+                      )}
+                    </Box>
                   </Box>
-                </Box>
-              ),
-            }}
-          />
-        </LocalizationProvider>
-      )}
-    />
-  );
-};
+                ),
+              }}
+            />
+          </LocalizationProvider>
+        )}
+      />
+    );
+  }
+);

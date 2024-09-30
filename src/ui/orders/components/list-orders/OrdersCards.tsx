@@ -27,6 +27,7 @@ export const OrdersCards = ({
     >
       {orders.map((order) => (
         <OrderCard
+          key={order.id}
           order={order}
           actionsMenu={
             <ActionsMenu
