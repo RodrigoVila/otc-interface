@@ -3,7 +3,7 @@ import { common } from "@mui/material/colors";
 import { LocalizationProvider, MobileDatePicker } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import dayjs, { Dayjs } from "dayjs";
-import utc from "dayjs/plugin/utc"; // Import UTC plugin for Dayjs
+import utc from "dayjs/plugin/utc";
 import { Controller, useFormContext } from "react-hook-form";
 import { COLORS } from "@/ui/constants/colors";
 
@@ -67,12 +67,13 @@ export const ExpirationDateInput = () => {
                           fontWeight: "700",
                           color: common.white,
                           letterSpacing: "0.8px",
+                          mb: 1,
                         }}
                       >
                         Note: Expiration dates will be handled in UTC time{" "}
                       </Typography>
                       {field.value && (
-                        <Typography fontSize="inherit">{`Equivalent UTC Time: ${formatUTC(
+                        <Typography fontSize="inherit">{`Order UTC Time: ${formatUTC(
                           dayjs(field.value)
                         )}`}</Typography>
                       )}

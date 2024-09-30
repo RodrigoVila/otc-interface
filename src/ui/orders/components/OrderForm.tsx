@@ -80,13 +80,15 @@ export const OrderForm = ({
     if (existingOrder) {
       editOrder(existingOrder.id, { ...data, id: existingOrder.id });
       openSnackbar("Order updated");
-      closeEditModal();
     } else {
       const order = { ...data, id: crypto.randomUUID() };
       addOrder(order);
       openSnackbar("Order created");
     }
+
     clearInputs();
+
+    if (closeEditModal) closeEditModal();
   };
 
   return (
@@ -96,11 +98,21 @@ export const OrderForm = ({
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          gap: 2,
+          gap: 4,
           width: "100%",
+          height: "100%",
+          mt: {
+            xs: 2,
+          },
         }}
       >
-        <Typography sx={{ textAlign: "center", fontSize: "2.5rem" }}>
+        <Typography
+          sx={{
+            textAlign: "center",
+            fontSize: existingOrder ? "1.8rem" : "2.5rem",
+            lineHeight: existingOrder ? "1rem" : "auto",
+          }}
+        >
           {existingOrder ? "Edit Order" : "New Order"}
         </Typography>
         <Box

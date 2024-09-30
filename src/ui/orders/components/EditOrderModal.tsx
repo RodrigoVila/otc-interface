@@ -1,18 +1,18 @@
-import { CloseSharp } from "@mui/icons-material";
-import { Box, IconButton, Modal } from "@mui/material";
+import { Box, Modal } from "@mui/material";
+import { CloseModalButton } from "./CloseModalButton";
 import { OrderForm } from "./OrderForm";
 import { OrderType } from "@/core/orders/orderTypes";
 import { COLORS } from "@/ui/constants/colors";
 
 type EditOrderModalProps = {
-  order: OrderType | null;
+  selectedOrder: OrderType | null;
   open: boolean;
   onModalClose: () => void;
   openSnackbar: (message: string) => void;
 };
 
 export const EditOrderModal = ({
-  order,
+  selectedOrder,
   open,
   onModalClose,
   openSnackbar,
@@ -20,28 +20,46 @@ export const EditOrderModal = ({
   return (
     <Modal
       open={open}
-      sx={{ display: "flex", alignItems: "center", justifyContent: "center" }}
+      slotProps={{
+        backdrop: { sx: { backgroundColor: "rgba(0, 0, 0, 0.95)" } },
+      }}
+      sx={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        overflowY: "scroll",
+        width: "100%",
+        px: {
+          xs: 2,
+        },
+      }}
     >
       <Box
         sx={{
           display: "flex",
+          flexDirection: "column",
           position: "relative",
           alignItems: "center",
           bgcolor: COLORS.background,
-          px: 4,
-          py: 8,
+          width: {
+            sx: "100%",
+            sm: "max-content",
+          },
+          height: {
+            sx: "100%",
+          },
+          py: {
+            xs: 2,
+          },
+          px: {
+            xs: 2,
+          },
           borderRadius: 2,
         }}
       >
-        <IconButton
-          aria-label="close"
-          onClick={onModalClose}
-          sx={{ position: "absolute", right: 8, top: 8 }}
-        >
-          <CloseSharp sx={{ color: COLORS.primary, height: 40, width: 40 }} />
-        </IconButton>
+        <CloseModalButton onClose={onModalClose} />
         <OrderForm
-          existingOrder={order}
+          existingOrder={selectedOrder}
           openSnackbar={openSnackbar}
           closeEditModal={onModalClose}
         />

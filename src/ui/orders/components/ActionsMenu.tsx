@@ -6,9 +6,13 @@ import { COLORS } from "@/ui/constants/colors";
 
 type ActionsMenuProps = {
   onEditClick: () => void;
+  onDeleteClick: () => void;
 };
 
-export const ActionsMenu = ({ onEditClick }: ActionsMenuProps) => {
+export const ActionsMenu = ({
+  onEditClick,
+  onDeleteClick,
+}: ActionsMenuProps) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
@@ -16,13 +20,18 @@ export const ActionsMenu = ({ onEditClick }: ActionsMenuProps) => {
     setAnchorEl(event.currentTarget);
   };
 
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
   const handleEditClick = () => {
     onEditClick();
     handleClose();
   };
 
-  const handleClose = () => {
-    setAnchorEl(null);
+  const handleDeleteClick = () => {
+    onDeleteClick();
+    handleClose();
   };
 
   return (
@@ -58,7 +67,7 @@ export const ActionsMenu = ({ onEditClick }: ActionsMenuProps) => {
           Edit order
         </MenuItem>
         <MenuItem
-          onClick={handleClose}
+          onClick={handleDeleteClick}
           sx={{
             paddingY: 1.5,
             "&:hover": {

@@ -19,6 +19,7 @@ import { formatUSDPrice } from "@/ui/utils/formatPrice";
 type OrdersCardsProps = {
   orders: OrderType[];
   handleEditModalOpen: (order: OrderType) => void;
+  handleDeleteModalOpen: (order: OrderType) => void;
 };
 
 const cellStyle: SxProps<Theme> = {
@@ -28,6 +29,7 @@ const cellStyle: SxProps<Theme> = {
 export const OrdersTable = ({
   orders,
   handleEditModalOpen,
+  handleDeleteModalOpen,
 }: OrdersCardsProps) => {
   return (
     <TableContainer
@@ -70,7 +72,10 @@ export const OrdersTable = ({
               <TableCell>{formatUSDPrice(order.total)}</TableCell>
               <TableCell>{order.expirationDate}</TableCell>
               <TableCell sx={{ display: "flex", gap: 1 }}>
-                <ActionsMenu onEditClick={() => handleEditModalOpen(order)} />
+                <ActionsMenu
+                  onEditClick={() => handleEditModalOpen(order)}
+                  onDeleteClick={() => handleDeleteModalOpen(order)}
+                />
               </TableCell>
             </TableRow>
           ))}
