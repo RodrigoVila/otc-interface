@@ -17,14 +17,6 @@ export const Logo = ({ isHomePage }: { isHomePage: boolean }) => {
         },
       }}
     >
-      <Box sx={{ height: { xs: 40, md: 30 } }}>
-        <img
-          src="https://membranelabs.com/wp-content/uploads/2023/06/Membrane-icon-9-Jun-2023.svg"
-          alt="Membrane Labs logo"
-          style={{ height: "100%" }}
-        />
-      </Box>
-
       <Typography
         variant="h6"
         sx={{
@@ -39,7 +31,7 @@ export const Logo = ({ isHomePage }: { isHomePage: boolean }) => {
           textDecoration: "none",
         }}
       >
-        Membrane OTC
+        OTC
       </Typography>
     </Box>
   );

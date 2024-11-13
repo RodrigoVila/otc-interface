@@ -20,7 +20,7 @@ export const usePersistedOrderStore = create(
         })),
     }),
     {
-      name: "membrane-order-storage",
+      name: "otc-interface-storage",
     }
   )
 );

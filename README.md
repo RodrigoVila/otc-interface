@@ -82,8 +82,8 @@ or run locally:
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/your-username/membrane-frontend-cc.git
-cd membrane-frontend-cc
+git clone https://github.com/RodrigoVila/otc-interface.git
+cd otc-interface
 ```
 
 2. Install dependencies
@@ -124,14 +124,9 @@ npm run test
 - CoinGecko API: https://www.coingecko.com/en/api
 
 ## Screenshots
+
 ![image](https://github.com/user-attachments/assets/2eaaf056-441a-41b2-9fda-752ff9e8ac44)
 ![image](https://github.com/user-attachments/assets/4255ff04-dc94-4d4e-b3a2-c9aa7bfa89a9)
 ![image](https://github.com/user-attachments/assets/6cf08fd3-ab22-4f83-9b9e-7bd17ce8d974)
 ![image](https://github.com/user-attachments/assets/621cf49e-ad81-4f33-8cdf-671ee846eda2)
 ![image](https://github.com/user-attachments/assets/5d348489-ac82-4161-952d-39dd7a37f7a2)
-
-
-
-
-
-

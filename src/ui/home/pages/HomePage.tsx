@@ -48,7 +48,7 @@ export const HomePage = () => {
             zIndex: 1,
           }}
         >
-          Membrane OTC
+          OTC Interface
         </Typography>
 
         <Typography
